@@ -32,16 +32,22 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-//isDev?'vue-style-loader':MiPin.loader
           MiniCssExtractPlugin.loader,
-          // 'vue-style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true //css模块化
-            }
-          }
+          'css-loader'
         ]
+      },
+      {
+        test:/\.(styl|stylus)/,
+        use:[
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'stylus-loader'
+        ]
+      },
+      // 字体文件
+      {
+        test: /\.(ttf|woff|eot|svg)$/,
+        use: 'file-loader'
       },
       // 处理图片
       {
@@ -77,7 +83,7 @@ module.exports = {
   // 插件
   plugins: [
     new HtmlPlugin({
-      template: './src/testWeb.html'
+      template: './public/index.html'
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({

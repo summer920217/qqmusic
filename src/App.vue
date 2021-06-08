@@ -1,0 +1,14 @@
+<template>
+<div>
+  <m-header></m-header>
+</div>
+</template>  
+
+<script>
+import MHeader from './components/m-header/m-header.vue'
+export default {
+  components:{
+    MHeader
+  }
+}
+</script>
