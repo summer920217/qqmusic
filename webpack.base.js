@@ -6,6 +6,8 @@ let { CleanWebpackPlugin } = require('clean-webpack-plugin');
 let MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // vue插件
 let VuePlugin = require('vue-loader/lib/plugin')
+let path = require('path')
+
 
 // 获取当前运行的环境是不是开发环境
 let isDev = process.env.NODE_ENV == 'development';
@@ -13,10 +15,11 @@ console.log(isDev)
 module.exports = {
   resolve: {
     // 后缀名
-    extensions: ['.js','.css','.less'],
+    extensions: ['.js','.css','.less','.vue','.styl'],
     // 别名
     alias: {
-      "@css": "../css"
+      "@common": path.resolve(__dirname,'src/common'),
+      "@comp":path.resolve(__dirname,'src/components')
     }
   },
 

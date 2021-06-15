@@ -1,6 +1,6 @@
 <template>
   <div class="m-header">
-    <h1 class="text">Vue - Music</h1>
+    <h1 class="text">QQ - Music</h1>
   </div>
 </template>
 
@@ -9,8 +9,9 @@ export default {};
 </script>
 
 <style scoped lang="stylus">
-@import '../../common/stylus/variable';
-@import '../../common/stylus/mixin';
+/* ~ ： 绝对路径 */
+@import '~@common/stylus/variable';
+@import '~@common/stylus/mixin';
 
 .m-header {
   position: relative;
