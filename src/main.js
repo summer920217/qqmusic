@@ -12,7 +12,10 @@ import './common/stylus/index.styl'
 
 // 引入vant
 import {Swipe,SwipeItem} from 'vant'
-import 'vant/lib/index.css'
+// import 'vant/lib/index.css'
+//按需引入
+import 'vant/lib/swipe/style'
+import 'vant/lib/swipe-item/style'
 
 Vue.use(Swipe)
 Vue.use(SwipeItem)

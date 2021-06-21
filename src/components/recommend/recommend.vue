@@ -1,6 +1,6 @@
 <template>
   <div class="recommend">
-    <div class="recommend-content">
+    <Scroll class="recommend-content">
       <!-- 轮播图 -->
       <div class="slider-wrapper">
         <Slider :pics="slider"></Slider>
@@ -8,9 +8,10 @@
       <!-- 热门歌曲列表 -->
       <div class="recommend-list">
         <h1 class="list-title">热门歌曲推荐</h1>
-        <recomm-list></recomm-list>
+        <!-- <div v-for="i in 100" :key="i">{{i}}</div> -->
+        <RecommList></RecommList>
       </div>
-    </div>
+    </Scroll>
   </div>
 </template>
 
@@ -18,11 +19,12 @@
 import Slider from '../../base/slider/Slider.vue'
 import recomm from '../../api/recommend'
 import RecommList from './recommend-list.vue'
+import Scroll from '../../base/scroll/Scroll'
 
 export default{
   data(){
     return {
-      slider:[]
+      slider:[],
     }
   },
   created() {
@@ -35,11 +37,13 @@ export default{
       }).catch(err=>{
         console.log(err)
       })
-    }
+    },
+    
   },
   components:{
     Slider,
-    RecommList
+    RecommList,
+    Scroll
   }
 }
 </script>
