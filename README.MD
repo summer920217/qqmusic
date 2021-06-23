@@ -204,6 +204,49 @@ import './common/stylus/index.styl'
           })
         },
   ```
+### 7. 歌手页
+#### 7.1 歌手列表的数据
+```  
+  1. 请求地址：/v8/fcg-bin/v8.fcg
+  2. 请求参数:
+    {
+      g_tk:5381,
+      format:'json',
+      inCharset:'utf8',
+      outCharset:'utf-8',
+      notice:0,
+      hostUin:0,
+      needNewCode:0,
+      platform:'yqq.json',
+      page:'list',
+      channel:'singer',
+      key:'all_all_all',
+      pagesize:100,
+      pagenum:1
+    }
+  3. 使用axios发送请求获取数据(配置dev.js)
+    解析数据
+    [
+      {
+        hot:{
+          title:'热门',
+          singers:[{},{},{}]
+        }
+      },
+      {
+        A:{
+          title:'A'
+          singers:[{},{},{}]
+        }
+      },
+      {
+        B:{
+          title:'B'
+          singers:[{},{},{}]
+        }
+      }
+    ]
+```
 
 
 

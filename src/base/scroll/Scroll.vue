@@ -1,14 +1,13 @@
 <template>
   <div ref="wrapper">
-    <div>
+    <!-- <div> -->
       <!-- 滚动的內容不固定，采用插槽來接收滚动的内容 -->
       <slot></slot>  
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 <script>
 import BScroll from 'better-scroll';
-
 
 export default {
   data() {

@@ -1,10 +1,16 @@
 <template>
-  <div>
-    <h1>歌手页</h1>
+  <div class="singer">
+    <singer-view></singer-view>
   </div>
 </template>
 
 <script>
+import SingerView from './singerView.vue'
+export default{
+  components:{
+    SingerView
+  }
+}
 </script>
 
 <style scoped lang="stylus">

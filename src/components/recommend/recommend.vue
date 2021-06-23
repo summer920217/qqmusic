@@ -1,15 +1,17 @@
 <template>
   <div class="recommend">
     <Scroll class="recommend-content">
-      <!-- 轮播图 -->
-      <div class="slider-wrapper">
-        <Slider :pics="slider"></Slider>
-      </div>
-      <!-- 热门歌曲列表 -->
-      <div class="recommend-list">
-        <h1 class="list-title">热门歌曲推荐</h1>
-        <!-- <div v-for="i in 100" :key="i">{{i}}</div> -->
-        <RecommList></RecommList>
+      <div>
+        <!-- 轮播图 -->
+        <div class="slider-wrapper">
+          <Slider :pics="slider"></Slider>
+        </div>
+        <!-- 热门歌曲列表 -->
+        <div class="recommend-list">
+          <h1 class="list-title">热门歌曲推荐</h1>
+          <!-- <div v-for="i in 100" :key="i">{{i}}</div> -->
+          <RecommList></RecommList>
+        </div>
       </div>
     </Scroll>
   </div>
