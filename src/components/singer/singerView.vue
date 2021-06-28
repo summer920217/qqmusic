@@ -1,12 +1,12 @@
 <template>
-  <Scroll class="listview" >
+  <Scroll class="listview" ref="listview">
     <ul>
       <!-- 首字母 -->
       <li class="list-group" v-for="(singer,idx) in singerList" :key="idx">
         <h2 class="list-group-title">{{singer.title}}</h2>
         <!-- 歌手列表 -->
         <ul>
-          <li v-for="(item,ix) in singer.singers" :key="ix" class="list-group-item">
+          <li v-for="(item,ix) in singer.singers" :key="ix" class="list-group-item" @click="select(item)">
             <img :src="item.avatar" class="avatar">
             <span class="name">{{item.fname}}</span>
           </li>
@@ -20,7 +20,7 @@
           {{item.title[0]}}
         </li> -->
         <!-- 利用computed -->
-        <li v-for="(key,i) in getIndex" :key="i">
+        <li v-for="(key,i) in getIndex" :key="i" class="item" @click="scrollTo(i)">
           {{key}}
         </li>
       </ul>
@@ -48,8 +48,28 @@ export default {
     _getSingerList(){
       getSingerList().then(data=>{
         console.log(data)
-        this.singerList = data;
+        this.singerList =  data;
       })
+    },
+    scrollTo(i){
+      // console.log(i);
+      // 点击字母滚动到对应字母的元素
+      // i:代表的就是对应字母元素的下标
+      // lis:获取分类歌手的列表
+      let lis = document.querySelectorAll('li.list-group');
+      //滚动到元素位置
+      //通过ref属性获取到scroll组件实例，然后调用该scroll实例中的滚动方法
+      this.$refs.listview.scrollToElement(lis[i])
+
+
+    },
+    select(singer){
+      // 点击某个歌手显示对应的详情页
+      // 通过自定义事件派发数据出去
+      // 将singer(id,名字,头像)传递给singer组件
+      //自定义事件名select，数据是singer
+      this.$emit('select',singer)
+
     }
   },
   created() {

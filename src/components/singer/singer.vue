@@ -1,12 +1,28 @@
 <template>
   <div class="singer">
-    <singer-view></singer-view>
+    <singer-view @select="select"></singer-view>
+    <transition name="slide">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
 import SingerView from './singerView.vue'
+import {mapMutations} from 'vuex'
 export default{
+  methods: {
+    ...mapMutations(["setSingerInfo"]),
+    select(singer){
+      //设置状态
+      this.setSingerInfo({
+        singer
+      })
+      //编程式导航路由跳转
+      this.$router.push(`/singer/${singer.fid}`);
+
+    }
+  },
   components:{
     SingerView
   }
