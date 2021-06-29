@@ -303,5 +303,19 @@ import './common/stylus/index.styl'
   - 遍历数据通过new的方式创建若干个Song对象，最终将所有的歌曲信息songs绑定传递给musicList组件
   - 在musicList中解析接收到的数据，遍历显示，并引入SongList来帮助解析遍历所有的歌曲信息
   - 在SongList中接收musicList绑定传递过来的数据songs
-  
 
+### 9. 推荐页歌单的歌曲列表
+  点击推荐页的歌单，在详情页中显示该歌单中的歌曲列表
+  详情页依然使用musicList组件，所以只需要获取到对应数据，然后在调用musicList组件时将数据传递给musicList组件
+  1. 新建recommend/recomDetail.vue
+    - 配置相关路由：router.js
+      · 在recommend.vue中设置router-view
+      · 在recommend-list组件中给每一个li添加单击事件，处理选择某个歌单的操作，派发自定义事件select给父组件
+      · 到recommend组件中调用recommendList组件的地方绑定自定义事件select
+      · 处理select事件：设置状态（将子组件传递的数据保存进singerInfo里），路由跳转（跳转到recomDetail组件中）
+  2. 在recomDetail中定义获取数据的方法，调用api中的recommend.js发送异步请求获取歌单歌曲列表，将数据在调用musicList组件时传递过去（title,avatar,songs）保证数据结构一致
+
+
+
+
+ 

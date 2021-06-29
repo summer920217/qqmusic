@@ -6,7 +6,7 @@ import Recommend from '@comp/recommend/recommend'
 import Search from '@comp/search/search'
 import Singer from '@comp/singer/singer'
 import SingerDetail from '@comp/singerDetail/singerDetail'
-
+import RecomDetail from '@comp/recommend/recomDetail'
 
 Vue.use(VueRouter)
 
@@ -19,7 +19,13 @@ export default new VueRouter({
     },
     {
       path:'/recommend',
-      component:Recommend
+      component:Recommend,
+      children:[
+        {
+          path:':dissid',
+          component:RecomDetail
+        }
+      ]
     },
     {
       path:'/singer',

@@ -61,7 +61,59 @@ function getDiss(){
   })
 }
 
+// 获取某个歌单里的歌曲列表
+function getDissSongs(dissid){
+  /* let url = '/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg';
+  let data = {
+    g_tk:5381,
+    format:'json',
+    inCharset:'utf-8',
+    outCharset:'utf-8',
+    notice:0,
+    type:1,
+    json:1,
+    utf8:1,
+    onlysong:0,
+    new_format:1,
+    dissid:dissid,
+    g_tk_new_20200303:5381,
+    platform:'yqq',
+    needNewCode:0
+  } */
+
+  //中间件转发
+  return axios.get('/getDiss',{
+    params:{dissid}
+  }).then(res=>{
+    let list = res.data[0].songlist
+    let data = []
+    list.forEach(val => {
+      let {
+        album:{name:albumname},
+        singer,
+        name:songname,
+        mid
+      } = val
+      data.push({albumname,singer,songname,mid})
+    });
+    return Promise.resolve(data)
+  }).catch(err=>{
+    return Promise.reject(err)
+  })
+
+
+  /* return axios.get(url,{params:data}).then(res=>{
+    console.log(res)
+  }).catch(err=>{
+    console.log(err)
+  }) */
+
+
+}
+
+
 export default{
   getSlider,
-  getDiss
+  getDiss,
+  getDissSongs
 }
