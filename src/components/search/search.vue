@@ -1,10 +1,71 @@
 <template>
-  <div>
-    <h1>搜索页</h1>
+  <div class="search">
+    <!-- 搜索区 -->
+    <div class="search-box-wrapper">
+      <search-box @queryChange="change"></search-box>
+    </div>
+    <!-- 热门搜索 -->
+    <div class="shortcut-wrapper" v-show="show">
+      <div class="shortcut">
+        <div class="hot-key">
+          <h1 class="title">热门搜索</h1>
+          <ul>
+            <li class="item" v-for="(key,i) in hotkey" :key="i">
+              {{key.k}}
+            </li>
+          </ul>
+        </div>
+        <div class="search-history"></div>
+      </div>
+    </div>
+    <!-- 搜索结果 -->
+    <div class="search-result" v-show="!show">
+      <Suggest :result="searchData"></Suggest>
+    </div>
   </div>
 </template>
 
 <script>
+import SearchBox from './search-box.vue'
+import Suggest from './suggest.vue'
+import {getHotKey,searchKey} from '../../api/search'
+
+export default{
+  data() {
+    return {
+      hotkey:[],
+      searchData:[],
+      show:true
+    }
+  },
+  methods: {
+    _getHotKey(){
+      getHotKey().then(hotkey=>{
+        console.log(hotkey)
+        this.hotkey = hotkey
+      })
+    },
+    change(query){
+      //获取query相关的搜索结果
+      if(query==''){
+        this.show = true
+        return ;
+      }
+      this.show = false
+      searchKey(query).then(data=>{
+        console.log(data);
+        this.searchData = data;
+      })
+    }
+  },
+  created() {
+    this._getHotKey()
+  },
+  components:{
+    SearchBox,
+    Suggest
+  }
+}
 </script>
 
 <style lang="stylus" >

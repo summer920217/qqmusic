@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     _getDissSongs(){
-      console.log(this.diss.dissid)
+      // console.log(this.diss.dissid)
       recom.getDissSongs(this.diss.dissid).then(songs=>{
         this.songs = songs
       })

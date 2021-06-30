@@ -18,10 +18,10 @@ export default {
   },
   methods: {
     _getSongList(){
-      console.log(this.singer.fid);
+      // console.log(this.singer.fid);
       getSongList(this.singer.fid)
       .then(list=>{
-        console.log(list)
+        // console.log(list)
         list.forEach(val => {
           // console.log(val)
           this.songs.push(new Song(val.musicData))

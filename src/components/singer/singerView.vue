@@ -47,7 +47,7 @@ export default {
   methods: {
     _getSingerList(){
       getSingerList().then(data=>{
-        console.log(data)
+        // console.log(data)
         this.singerList =  data;
       })
     },
