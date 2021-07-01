@@ -1,7 +1,7 @@
 <template>
   <div class="search-box">
     <i class="icon-search"></i>
-    <input ref="query" v-model="query" placeholder="请输入歌手名或歌曲名" class="box"/>
+    <input ref="query" v-model="query" placeholder="请输入歌手名或歌曲名" class="box" @blur="cache"/>
     <i class="icon-dismiss" @click="clear" v-show="query.length"></i>
   </div>
 </template>
@@ -17,6 +17,9 @@ export default {
   methods: {
     clear(){
       this.query = ''
+    },
+    cache(){
+      this.$emit("cache",this.query)
     }
   },
   watch:{

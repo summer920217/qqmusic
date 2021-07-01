@@ -319,3 +319,24 @@ import './common/stylus/index.styl'
 
 
 ### 10. 搜索页
+  1. 新建
+    api/search.js 用于获取搜索页的数据
+    search/search.vue 搜索的根组件
+    search/search-box.vue 搜索框
+    search/suggest.vue 搜索结果
+  2. 在search组件中引入search-box和suggest
+    - 热门搜索：
+    search中输入关键字时,会显示一部分关键字
+    api中发送请求获取数据，取其中一部分数据返回给search解析，遍历显示
+    - 搜索框：
+    给input添加v-model，在data中定义对应的属性 query
+    监听query值的变化（watch），实时向父组件派发事件queryChange，同时将数据传递给父组件
+    父组件接收数据并调用api发送请求获取对应关键字搜索到的数据，解析数据，然后再将数据返回，绑定给suggest组件遍历解析
+    -- 遗留问题:历史记录
+### 11. 排行榜
+  rank.vue , api/rank.js
+  rank组件创建时发送请求获取数据
+  rank.js使用axios发送请求(配置wepack.dev.js，域名与之前不一样，需要重新配置)
+  获取到数据后，先查看数据结构，然后解析数据，取需要的数据返回
+  rank.vue遍历数据(数据结构层次深，需要多次使用v-for)
+  最后引入Scroll，实现滚动

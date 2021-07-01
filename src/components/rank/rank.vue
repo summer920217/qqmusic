@@ -1,10 +1,52 @@
 <template>
-  <div>
-    <h1>排行榜</h1>
+  <div class="rank">
+    <Scroll class="toplist">
+      <ul>
+        <li  v-for="(top,i) in tops" :key="i">
+          <div class="item" v-for="(t,idx) in top.toplist" :key="idx" >
+            <div class="icon">
+              <img width="120" :src="t.frontPicUrl" >
+            </div>
+            <div class="songlist">
+              <div class="song" v-for="(s,index) in t.song" :key="index">
+                <div class="name">
+                  {{index+1}}. {{s.singerName}} ~ {{s.title}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </li>
+      </ul>
+    </Scroll>
   </div>
 </template>
 
 <script>
+import {getRankList} from '../../api/rank'
+import Scroll from '../../base/scroll/Scroll.vue'
+export default{
+  data() {
+    return {
+      tops:[]
+    }
+  },
+  methods: {
+    _getRankList(){
+      getRankList().then(res=>{
+        console.log(res)
+        this.tops = res;
+      })
+    },
+    
+  },
+  created() {
+    this._getRankList()
+  },
+  components:{
+    Scroll
+  }
+}
 </script>
 
 <style scoped lang="stylus">

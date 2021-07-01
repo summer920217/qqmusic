@@ -2,7 +2,7 @@
   <div class="search">
     <!-- 搜索区 -->
     <div class="search-box-wrapper">
-      <search-box @queryChange="change"></search-box>
+      <search-box @queryChange="change" @cache="his"></search-box>
     </div>
     <!-- 热门搜索 -->
     <div class="shortcut-wrapper" v-show="show">
@@ -38,6 +38,9 @@ export default{
       show:true
     }
   },
+  updated() {
+    console.log(localStorage.getItem('history'));
+  },
   methods: {
     _getHotKey(){
       getHotKey().then(hotkey=>{
@@ -56,6 +59,10 @@ export default{
         console.log(data);
         this.searchData = data;
       })
+    },
+    his(query){
+      // let history = localStorage.getItem('history') || []
+      // history.push(query)
     }
   },
   created() {
