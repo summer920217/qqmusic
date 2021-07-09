@@ -1,7 +1,7 @@
 <template>
   <div class="song-list">
     <ul>
-      <li v-for="(song,i) in songs" :key="i" class="item">
+      <li v-for="(song,i) in songs" :key="i" class="item" @click="chooseSong(i)">
         <div class="content">
           <h2 class="name">{{song.songname}}</h2>
           <p class="desc">{{desc(song)}}</p>
@@ -32,7 +32,12 @@ export default {
       str = str.slice(1)
       str = `${str} ~ ${albumname}`
       return str
+    },
+    chooseSong(index){
+      //派发选择歌曲事件，将被选择的歌曲下标传递给父组件
+      this.$emit("chooseSong",index)
     }
+
   }
 }
 </script>

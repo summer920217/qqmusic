@@ -36,7 +36,7 @@ module.exports = merge(base, {
       {
         context:[
           "/cgi-bin/musics.fcg",
-          "/cgi-bin/musicu.fcg"
+          "/cgi-bin/musicu.fcg",
         ],
         target:"https://u.y.qq.com/",
         changeOrigin:true,

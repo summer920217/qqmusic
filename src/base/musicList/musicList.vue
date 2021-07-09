@@ -9,7 +9,7 @@
     </div>
     <scroll class="list" ref="list">
       <div class="song-list-wrapper">
-      <SongList :songs="songs"></SongList>
+      <SongList :songs="songs" @chooseSong="choose"></SongList>
       </div>
     </scroll>
   </div>
@@ -19,11 +19,34 @@
 import SongList from '../songList/songList.vue'
 import Scroll from '../scroll/Scroll.vue'
 import ChapterList from '../../../../day06/novel/src/components/chapterList.vue'
+import tool from '../../api/player'
+import {mapActions} from 'vuex'
+
 
 export default {
   methods: {
+    ...mapActions(["setPlaySong"]),
     back(){//返回上一步
       this.$router.back()
+    },
+    choose(index){
+      //接收被点击歌曲的下标 index 从而得到被点击歌曲的信息
+      let song = this.songs[index];
+      console.log(song)
+      tool.getPlayKey(song.songmid)
+      .then(songUrl=>{
+        // songUrl 就是歌曲的资源地址
+        // 将地址添加到当前歌曲的url属性中
+        this.$set(song,"url",songUrl);
+        // 设置歌曲为当前播放歌曲，还有播放列表
+        this.setPlaySong({
+          playList:this.songs,//当前播放的歌曲列表
+          currentIndex:index//当前播放的下标
+        })
+        // console.log(song)
+      }).catch(err=>{                     
+        console.log(err)
+      })
     }
   },
   props:{

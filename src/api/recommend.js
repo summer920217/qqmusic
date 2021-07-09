@@ -89,12 +89,16 @@ function getDissSongs(dissid){
     let data = []
     list.forEach(val => {
       let {
-        album:{name:albumname},
+        album:{
+          name:albumname,// 专辑名
+          mid: albummid // 专辑mid
+        },
         singer,
         name:songname,
-        mid
+        mid,
+        interval,//歌曲总时间(秒数)
       } = val
-      data.push({albumname,singer,songname,mid})
+      data.push({albumname,albummid,singer,songname,mid,interval})
     });
     return Promise.resolve(data)
   }).catch(err=>{

@@ -2,8 +2,8 @@
   <div>
     <ul class="recommend-list">
       <li v-for="(d,i) in list" :key="i" class="item" @click="select(d)">
-        <!-- <div class="p-left"></div>
-        <div class="p-right"></div> -->
+        <div class="p-left"></div>
+        <div class="p-right"></div>
         <div class="icon">
           <img :src="d.imgurl" class="recom-img">
         </div>
