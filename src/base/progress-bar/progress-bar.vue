@@ -1,6 +1,6 @@
 <template>
   <div class="progress-bar" ref="progressBar">
-    <div class="bar-inner">
+    <div class="bar-inner" @click="select">
       <div class="progress" ref="progress"></div>
       <div class="progress-btn-wrapper" ref="progressBtn" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend">
         <div class="progress-btn"></div>
@@ -74,6 +74,13 @@ export default {
       let percent = progressWidth / barWidth;
       // 将比例派发给播放组件
       this.$emit(type,percent);
+    },
+    //点击进度条直接跳转到对应的进度位置
+    select(e){
+      console.log(e);
+      this._offSet(e.offsetX);
+      this._setPercent("changePercent");
+
     }
   },
   props:{

@@ -24,7 +24,8 @@ module.exports = merge(base, {
           "/v8/fcg-bin/v8.fcg",
           "/v8/fcg-bin/fcg_v8_singer_track_cp.fcg",
           "/splcloud/fcgi-bin/gethotkey.fcg",
-          "/splcloud/fcgi-bin/smartbox_new.fcg"
+          "/splcloud/fcgi-bin/smartbox_new.fcg",
+          "/lyric/fcgi-bin/fcg_query_lyric_new.fcg"
         ],
         target:"https://c.y.qq.com/",
         changeOrigin:true,
